@@ -1,8 +1,12 @@
-const express = require("express")
-const router = express.Router()
-const controller = require("../controllers/alunasController")
+const express = require("express");
+const router = express.Router();
+const controller = require("../controllers/alunasController");
+const authMiddleware = require("../middlewares/auth");
 
 router.get("/", controller.get)
+
+router.use(authMiddleware); //A PARTIR DAQUI TODAS AS ROTAS TÊM PROTEÇÃO MEDIANTE APRESENTAÇÃO DE TOKEN
+
 router.get("/nasceuSp", controller.getSp)
 router.get("/:id", controller.getById)
 router.get("/:id/books", controller.getBooks)

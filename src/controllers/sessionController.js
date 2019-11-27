@@ -10,13 +10,14 @@ exports.getToken = (req, res) => {
         return res.status(401).json({ error: 'user not found' });
     }
 
-    const { id, nome } = user;
+    const { id, nome, dateOfBirth } = user;
 
     try {
         return res.json({
             user: {
                 id,
                 nome,
+                dateOfBirth,
             },
             token: jwt.sign({ id }, authConfig.secret, {
                 expiresIn: authConfig.expiresIn,
